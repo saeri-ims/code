@@ -48,7 +48,7 @@ traverseDirectory(original_path, function(err, result) {
     }
     console.log(images.length);
     // console.log(images);
-    fs.writeFileSync('data/imagesinv.json',JSON.stringify(images));
+    fs.writeFileSync('../data/imagesinv.json',JSON.stringify(images));
   });
 
 // function fileswalker(files, callback) {

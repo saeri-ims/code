@@ -1,9 +1,9 @@
 var fs = require('fs');
 var turf = require('@turf/turf');
 
-var flines  = JSON.parse(fs.readFileSync('data/FlightLines_4326.geojson'));
-var pmatrix = JSON.parse(fs.readFileSync('data/pmatrix.json'));
-var imgsinv = JSON.parse(fs.readFileSync('data/imagesinv.json'));
+var flines  = JSON.parse(fs.readFileSync('../data/FlightLines_4326.geojson'));
+var pmatrix = JSON.parse(fs.readFileSync('../data/pmatrix.json'));
+var imgsinv = JSON.parse(fs.readFileSync('../data/imagesinv.json'));
 
 /***************************************************************************/
 
@@ -57,8 +57,8 @@ turf.featureEach(flines, function (currentFeature, featureIndex) {
     console.log(offsetPolygon);
   };
 });
-// console.log('total of images->' + timgs_count + ', resized & cropped->' + imgsinv.length +', placed->' + pimgs_count + ', missing->' + mimgs_count)
-fs.writeFileSync('data/images_georeference.geojson',JSON.stringify(aimgsCollection));
+console.log('total of images->' + timgs_count + ', resized & cropped->' + imgsinv.length +', placed->' + pimgs_count + ', missing->' + mimgs_count)
+fs.writeFileSync('../data/images_georeference.geojson',JSON.stringify(aimgsCollection));
 /***************************************************************************/
 
 /**********
