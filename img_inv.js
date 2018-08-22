@@ -1,7 +1,12 @@
 var fs = require('fs');
 var path = require('path')
 
-var original_path = '../fias_1956_img';
+var photos = {
+  'all':              '1956_Aerial_Photos',
+  'cropped':          '1956_Aerial_Photos_cropped',
+  'cropped_resized':  '1956_Aerial_Photos_cropped_resized'
+}
+var original_path = '/media/pb/DATA/'+photos['cropped'];
 
 function traverseDirectory(dirname, callback) {
   var directory = [];
@@ -40,6 +45,7 @@ traverseDirectory(original_path, function(err, result) {
   var images = [];
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
+    // var name = path.basename(file, '.jpeg');
     var name = path.basename(file, '.jpeg');
       if (name.includes('F_I_')) {
         images.push(name);
@@ -48,7 +54,7 @@ traverseDirectory(original_path, function(err, result) {
     }
     console.log(images.length);
     // console.log(images);
-    fs.writeFileSync('../data/imagesinv.json',JSON.stringify(images));
+    fs.writeFileSync('../data/'+photos['cropped']+'.json',JSON.stringify(images));
   });
 
 // function fileswalker(files, callback) {
