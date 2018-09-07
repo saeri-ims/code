@@ -10,6 +10,7 @@ CC0058_R_DOKE_20161205_033_0150_Cc_MCOS - Copy
 
 https://www.npmjs.com/package/csvtojson
 csvtojson /home/pb/Downloads/Log_PB_Cet.csv > doke_navigation_log.json
+csvtojson /media/pb/DATA/DOKE_data/Log_Focal_per_cet_all.csv > /media/pb/DATA/DOKE_data/doke_log.json
 
 https://www.npmjs.com/package/csv
 const csv=require('csv');
