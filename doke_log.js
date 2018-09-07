@@ -20,7 +20,8 @@ for (var i = 0; i < log.length; i++) {
   if (index_a != index_b) {
     index_a = index_b
     y++
-    var lineString =  turf.lineString([[log[i].LondecS,log[i].LatdecS],[log[i].LondecE,log[i].LatdecE]],{
+    // var lineString =  turf.lineString([[log[i].LondecS,log[i].LatdecS],[log[i].LondecE,log[i].LatdecE]],{
+    var point =  turf.point([log[i].LondecS,log[i].LatdecS],{
       s_e: log[i].S_E,
       project: log[i].Project,
       area: log[i].Area,
@@ -42,13 +43,31 @@ for (var i = 0; i < log.length; i++) {
       sightno: log[i].SightNo,
       sp: log[i].Sp,
       date: log[i].Yeara+'/'+log[i].Montha+'/'+(log[i].Date_num).slice(-2),
+      spotter: log[i].Spotter,
+      cue: log[i].Cue,
+      behasight: log[i].BehaSight,
+      mingr: log[i].MinGr,
+      maxmr: log[i].MaxGr,
+      grsize: log[i].GrSize,
+      changeofset: log[i].ChangeOfSet,
+      a: log[i].A,
+      j: log[i].J,
+      c: log[i].C,
+      n: log[i].N,
+      qgr: log[i].QGr,
+      photoid: log[i].PhotoID,
+      video: log[i].Video,
+      poo: log[i].Poo,
+      genetic: log[i].Genetic,
       notes: log[i].Notes
     });
-    logsCollection.features.push(lineString);
+    logsCollection.features.push(point);
   }
   else {
-    logsCollection.features[y].geometry.coordinates.push([log[i].LondecE,log[i].LatdecE]);
+    // logsCollection.features[y].geometry.coordinates.push([log[i].LondecE,log[i].LatdecE]);
   }
 }
-fs.writeFileSync(DOKE_data_path+'doke_log.geojson',JSON.stringify(logsCollection));
+
+fs.writeFileSync(DOKE_data_path+'doke_log_points.geojson',JSON.stringify(logsCollection));
+
 // console.log(logsCollection.features[0]);
