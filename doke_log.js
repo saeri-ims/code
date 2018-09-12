@@ -17,6 +17,8 @@ var index_a = 0;
 var y = -1;
 for (var i = 0; i < log.length; i++) {
   index_b = log[i].Index
+  if (log[i].PreEff == 'Pos') {
+
   if (index_a != index_b) {
     index_a = index_b
     y++
@@ -62,12 +64,16 @@ for (var i = 0; i < log.length; i++) {
       notes: log[i].Notes
     });
     logsCollection.features.push(point);
+    // logsCollection.features.push(lineString);
   }
   else {
     // logsCollection.features[y].geometry.coordinates.push([log[i].LondecE,log[i].LatdecE]);
   }
+
+} // if Pos
+
 }
 
-fs.writeFileSync(DOKE_data_path+'doke_log_points.geojson',JSON.stringify(logsCollection));
+//fs.writeFileSync(DOKE_data_path+'doke_log_points_pos.geojson',JSON.stringify(logsCollection));
 
-// console.log(logsCollection.features[0]);
+console.log(logsCollection.features[0]);
