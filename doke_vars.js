@@ -41,9 +41,10 @@ var nef = '/media/pb/DATA/DOKE_best_marked_original/CC0008_R_DOKE_20161123_006_0
 var cr2 = '/media/pb/DATA/DOKE_best_marked_original/CC0008_R_DOKE_20161123_006_1490_Cc_CWEI.CR2';
 var nef1 = '/media/pb/DATA/DOKE_best_marked_original/CC0510_L_DOKE_20171113_175_6600_Cc_AGUE.NEF'; // DateTimeOriginal: '2017:11:13 10:20:53'
 var jpg = '/media/pb/DATA/1956_Aerial_Photos_process_jpg/F_I_01_0003.jpg';
-var tif = '/media/pb/DATA/1956_Aerial_Photos_original_tif/F_I_01_0003.tif'; // CreateDate: '2007:10:30 17:45:17Z'
+var tif = '/media/pb/DATA/1956_Aerial_Photos_original_tif/F_I_01_0003.tif';
+var geotif = '/media/pb/DATA/Requested_data/PortHoward/georeference.tif'; // CreateDate: '2007:10:30 17:45:17Z'
 
-Exif(jpg, (error, metadata) => {
+Exif(geotif, (error, metadata) => {
 
     if (error) {
         // handle error

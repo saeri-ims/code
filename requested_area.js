@@ -32,6 +32,11 @@ turf.featureEach(images, function (currentFeature, featureIndex) {
   }
 });
 console.log(imgsCollection.features);
-fs.writeFileSync(deliver_path+'images_PortHoward.geojson',JSON.stringify(imgsCollection));
+fs.writeFileSync(data_path+'images_PortHoward.geojson',JSON.stringify(imgsCollection));
 // console.log(images.features[0].geometry.coordinates[0]);
 // console.log(requested_area.features[0].geometry.coordinates[0]);
+
+
+// Move all files, but not folders:
+
+// find path_to_the_top_folder_containing_images_and_forms -type f -exec mv --backup=numbered -t path_to_the_destination_folder {} +
