@@ -28,11 +28,9 @@ turf.featureEach(flines, function (currentFeature, featureIndex) {
   var strpoint = currentFeature.geometry.coordinates[0][0];
   var endpoint = currentFeature.geometry.coordinates[0][1];
   for (let i = 0; i < count; i++) {
-    // center = turf.along(line, (segments + S_RECTFN) * i);
     center = turf.along(line, segments * i);
     if (count == 1) endpoint = center;
     // rotangle = turf.rhumbBearing(strpoint,endpoint); // slope
-    // console.log(rotangle);
     rotangle = turf.rhumbBearing(strpoint,endpoint,{final:true});
     strpoint = center;
     // circle radius: 5.72km / 2 = 2.86km
@@ -40,7 +38,6 @@ turf.featureEach(flines, function (currentFeature, featureIndex) {
     envelopePolygon = turf.envelope(circle);
     hoffangle = (H_OFFSET < 0)?270:90;
     voffangle = (V_OFFSET < 0)?0:180;
-    // offsetPolygon = turf.transformTranslate(envelopePolygon, H_OFFSET, 270);
     offsetPolygon = turf.transformTranslate(envelopePolygon, H_OFFSET, hoffangle);
     offsetPolygon = turf.transformTranslate(offsetPolygon, V_OFFSET, voffangle);
     groundFootprint = turf.transformRotate(offsetPolygon,rotangle);
