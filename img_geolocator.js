@@ -6,6 +6,7 @@ var data_path = '/home/pb/Sites/data/';
 var flines  = JSON.parse(fs.readFileSync(data_path+'FlightLines_4326.geojson'));
 var pmatrix = JSON.parse(fs.readFileSync(data_path+'pmatrix.json'));
 var imgsinv = JSON.parse(fs.readFileSync(data_path+'1956_Aerial_Imagery_inv.json'));
+var imgsgrf = JSON.parse(fs.readFileSync(data_path+'1956_Aerial_Imagery_grf.json'));
 
 /***************************************************************************/
 
@@ -22,7 +23,7 @@ turf.featureEach(flines, function (currentFeature, featureIndex) {
   var count = (frm_ext[1]!=null)?(Math.abs(eval(frm_ext[0]-frm_ext[1])))+1:1;
   H_OFFSET = cmatrix.H_OFFSET;
   V_OFFSET = cmatrix.V_OFFSET;
-  S_RECTFN = cmatrix.S_RECTFN;
+  A_RECTFN = cmatrix.A_RECTFN;
   var distance = turf.lineDistance(line);
   var segments = distance / count;
   var strpoint = currentFeature.geometry.coordinates[0][0];
@@ -38,14 +39,17 @@ turf.featureEach(flines, function (currentFeature, featureIndex) {
     envelopePolygon = turf.envelope(circle);
     hoffangle = (H_OFFSET < 0)?270:90;
     voffangle = (V_OFFSET < 0)?0:180;
+    if (A_RECTFN != undefined) rotangle = rotangle+A_RECTFN;
     offsetPolygon = turf.transformTranslate(envelopePolygon, H_OFFSET, hoffangle);
     offsetPolygon = turf.transformTranslate(offsetPolygon, V_OFFSET, voffangle);
     groundFootprint = turf.transformRotate(offsetPolygon,rotangle);
+    // console.log(A_RECTFN);
     /*--------------------------------------------------*/
     var ord = (heading=='EAST')?parseInt(frm_ext[0])+i:parseInt(frm_ext[0])-i;
     var img = 'F_I_'+film.substr(3,2)+'_'+('0000' + ord).slice(-4);
     groundFootprint.properties.name = img;
     groundFootprint.properties.present = (imgsinv.indexOf(img) > -1)?1:0;
+    groundFootprint.properties.geotiff = (imgsgrf.indexOf(img) > -1)?1:0;
     aimgsCollection.features.push(groundFootprint);
   };
 });
