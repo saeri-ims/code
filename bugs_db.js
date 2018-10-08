@@ -1,7 +1,7 @@
 var fs = require('fs');
 var cmd = require('node-cmd');
 
-var data_path = '/media/pb/DATA/Biosecurity_data/'
+var data_path = '/home/pb/Work/SAERI/BugsDatabase/biosecurity/data'
 var bugs = JSON.parse(fs.readFileSync(data_path + 'BugsDB.json'));
 var submitters = [];
 var names = [];
@@ -39,9 +39,13 @@ for (var i = 0; i < bugs.length; i++) {
 console.log(occurrences(bugs,{key:'submitter', value:7}));
 
 function occurrences (array,cond,write) {
-  var count = 0;
+  var amnt = 0;
+  var result = {
+    values:[],
+    count:[]
+  };
   for (var i = 0; i < array.length; i++) {
-    if (array[i][cond.key] == cond.value) count++
+    if (array[i][cond.key] == cond.value) amnt++
   }
-  return count;
+  return amnt;
 }
