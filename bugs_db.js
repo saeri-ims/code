@@ -29,9 +29,28 @@ for (var i = 0; i < bugs.length; i++) {
   delete bugs[i].email;
   delete bugs[i].phone;
   delete bugs[i].submitter_name;
-  // console.log(bugs[i].submitter+'-'+bugs[i].submitter_name+'-'+submitters[names.indexOf(name)].name+'-'+names[names.indexOf(name)]);
-  // console.log(bugs[i].location);
+
+  //------------------------------------
+
+  //   var class_ = bugs[i].class;
+  //   var order = bugs[i].order;
+  //   var family = bugs[i].family;
+  //   var subfamily = bugs[i].subfamily;
+  //   var genus = bugs[i].genus;
+  //   var species = bugs[i].species;
+  //   bugs[i].classification =  class_+' | '+order+' | '+family+((subfamily!='')?' ('+subfamily+ ')':'')+' | '+genus+' | '+species;
+  //
+  //   delete bugs[i].class;
+  //   delete bugs[i].order;
+  //   delete bugs[i].family;
+  //   delete bugs[i].subfamily;
+  //   delete bugs[i].genus;
+  //   delete bugs[i].species;
+  //
+  //   console.log(bugs[i].classification);
+
+  
 }
 // console.log(names_count);
 // fs.writeFileSync(data_path+'Submitters.json',JSON.stringify(submitters));
-fs.writeFileSync(data_path+'Bugs.json',JSON.stringify(bugs));
+fs.writeFileSync(data_path+'Bugs_.json',JSON.stringify(bugs));
