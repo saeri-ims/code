@@ -24,6 +24,8 @@ https://www.npmjs.com/package/node-exiftool
 !!!!!!!!!!!!
 https://www.npmjs.com/package/simple-exiftool
 
+https://www.npmjs.com/package/json2csv
+
 */
 
 // const exif = require('exif-parser');

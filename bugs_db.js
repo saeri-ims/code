@@ -1,56 +1,63 @@
 var fs = require('fs');
 var cmd = require('node-cmd');
-
+var _t = require('/home/pb/Work/code/_tools.js');
+var Json2csvParser = require('json2csv').Parser;
 var data_path = '/home/pb/Work/SAERI/BugsDatabase/biosecurity/data/'
-var bugs = JSON.parse(fs.readFileSync(data_path + 'BugsDB.json'));
-var submitters = [];
-var names = [];
-var names_count = [];
-var number = 0;
-for (var i = 0; i < bugs.length; i++) {
-  var name = bugs[i].submitter_name;
-  if (names.indexOf(name) < 0){
-    var submitter = {
-      id:++number,
-      name:name,
-      address:bugs[i].address,
-      email:bugs[i].email,
-      phone:bugs[i].phone
-    }
-    names.push(name);
-    submitters.push(submitter);
-    names_count[names.indexOf(name)] = 1;
-  }
-  else {
-    names_count[names.indexOf(name)] = names_count[names.indexOf(name)] + 1;
-  }
-  bugs[i].submitter = names.indexOf(name)+1;
-  delete bugs[i].address;
-  delete bugs[i].email;
-  delete bugs[i].phone;
-  delete bugs[i].submitter_name;
+var bugs = JSON.parse(fs.readFileSync(data_path + 'Bugs.json'));
+var audit = JSON.parse(fs.readFileSync(data_path + 'bugs_audit.json'));
+var clasiffication = JSON.parse(fs.readFileSync(data_path + 'Classification.json'));
+var submitters = JSON.parse(fs.readFileSync(data_path + 'Submitters.json'));
 
-  //------------------------------------
 
-  //   var class_ = bugs[i].class;
-  //   var order = bugs[i].order;
-  //   var family = bugs[i].family;
-  //   var subfamily = bugs[i].subfamily;
-  //   var genus = bugs[i].genus;
-  //   var species = bugs[i].species;
-  //   bugs[i].classification =  class_+' | '+order+' | '+family+((subfamily!='')?' ('+subfamily+ ')':'')+' | '+genus+' | '+species;
-  //
-  //   delete bugs[i].class;
-  //   delete bugs[i].order;
-  //   delete bugs[i].family;
-  //   delete bugs[i].subfamily;
-  //   delete bugs[i].genus;
-  //   delete bugs[i].species;
-  //
-  //   console.log(bugs[i].classification);
+// _t.print_audit (20, audit.classification, clasiffication, 'name');
+//
+// _t.print_audit (20, audit.classification_old);
+//
+// _t.print_audit (20, audit.submitter, submitters, 'name');
 
-  
-}
-// console.log(names_count);
-// fs.writeFileSync(data_path+'Submitters.json',JSON.stringify(submitters));
-fs.writeFileSync(data_path+'Bugs_.json',JSON.stringify(bugs));
+// _t.print_audit (20, audit.location);
+
+// _t.print_audit (20, audit.origin);
+
+// _t.print_audit (20, audit.vessel);
+
+// _t.print_audit (20, audit.common_name);
+//
+// _t.print_audit (20, audit.latin_name);
+
+console.log(audit.latin_name.length);
+
+// var prxport = [];
+// for (var i = 0; i < bugs.length; i++) {
+//   // prxport[i] = {};
+//   // string = i+' '+bugs[i].classification_old+' -- '+bugs[i].latin_name+' -- '+bugs[i].name;
+//   sub = (bugs[i].submitter !== '')?submitters[bugs[i].submitter].name+' | '+submitters[bugs[i].submitter].address:'';
+//   // string = i+' '+bugs[i].location+' -- '+bugs[i].name+' --> '+sub;
+//   if (bugs[i].location !== '') {
+//     prxport[i] = {
+//       'location_old' : bugs[i].location,
+//       'location_name' : '',
+//       'location_Geo_URI' : '',
+//       'bug_name' : bugs[i].name,
+//       'description' : bugs[i].description,
+//       'comments': bugs[i].comments,
+//       'submitter' : sub
+//     }
+//   }
+// }
+
+// for (var i = 0; i < bugs.length; i++) {
+//   string = i+' '+bugs[i].name+' -- '+bugs[i].latin_name;
+//   if (bugs[i].endemic === 1) console.log(string);
+// }
+
+// var fields = prxport[0].keys;
+// var json2csvParser = new Json2csvParser({ fields });
+// var csv = json2csvParser.parse(prxport);
+//
+// console.log(csv);
+// // fs.writeFileSync(data_path+'Bugs.json',JSON.stringify(bugs));
+// fs.writeFileSync(data_path+'clasiffication.csv',csv);
+// console.log(csv);
+
+// fs.writeFileSync(data_path+'bugs_audit.json',JSON.stringify(_t.get_occurrences(bugs)));
