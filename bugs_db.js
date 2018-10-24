@@ -5,7 +5,7 @@ var Json2csvParser = require('json2csv').Parser;
 var data_path = '/home/pb/Work/SAERI/BugsDatabase/biosecurity/data/'
 var bugs = JSON.parse(fs.readFileSync(data_path + 'Bugs.json'));
 var audit = JSON.parse(fs.readFileSync(data_path + 'bugs_audit.json'));
-var clasiffication = JSON.parse(fs.readFileSync(data_path + 'Classification.json'));
+// var clasiffication = JSON.parse(fs.readFileSync(data_path + 'Classification.json'));
 var submitters = JSON.parse(fs.readFileSync(data_path + 'Submitters.json'));
 
 
@@ -25,7 +25,7 @@ var submitters = JSON.parse(fs.readFileSync(data_path + 'Submitters.json'));
 //
 // _t.print_audit (20, audit.latin_name);
 
-console.log(audit.latin_name.length);
+console.log(audit.classification.length);
 
 // var prxport = [];
 // for (var i = 0; i < bugs.length; i++) {
@@ -47,7 +47,7 @@ console.log(audit.latin_name.length);
 // }
 
 // for (var i = 0; i < bugs.length; i++) {
-//   string = i+' '+bugs[i].name+' -- '+bugs[i].latin_name;
+//   string = i+' '+bugs[i].name+' -- '+bugs[i].latin_name+' ----- '+bugs[i].classification_old;
 //   if (bugs[i].endemic === 1) console.log(string);
 // }
 
