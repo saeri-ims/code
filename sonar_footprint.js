@@ -12,6 +12,9 @@ var intersects = turf.lineIntersect(southbb, bathymt);
 
 console.log (turf.length(southbb, {units: 'nauticalmiles'}) / 8);
 
+console.log (turf.length(southbb, {units: 'nauticalmiles'}));
+
+
 var sonarFootprint = turf.featureCollection([]);
 turf.featureEach(bathymt, function(currentFeature, featureIndex) {
   var intersects = turf.lineIntersect(southbb, currentFeature);

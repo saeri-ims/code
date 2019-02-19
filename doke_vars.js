@@ -26,6 +26,13 @@ https://www.npmjs.com/package/simple-exiftool
 
 https://www.npmjs.com/package/json2csv
 
+/home/pb/Work/SAERI/Nick_Metadata/metadata_OTs_export190126.csv
+/home/pb/Work/SAERI/Nick_Metadata/metadata_OTs_export190126.json
+metadata_OTs_export190126.csv
+
+csvtojson /home/pb/Work/SAERI/Nick_Metadata/metadata_OTs_export190126.csv > /home/pb/Work/SAERI/Nick_Metadata/metadata_OTs_export190126.json
+
+
 */
 
 // const exif = require('exif-parser');

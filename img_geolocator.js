@@ -34,8 +34,10 @@ turf.featureEach(flines, function (currentFeature, featureIndex) {
     // rotangle = turf.rhumbBearing(strpoint,endpoint); // slope
     rotangle = turf.rhumbBearing(strpoint,endpoint,{final:true});
     strpoint = center;
-    // circle radius: 5.72km / 2 = 2.86km
-    circle = turf.circle(center, 2.86, {units: 'kilometers',steps: 8});
+    // https://www.xdrones.es/aerial-camera-ground-footprint-calculator/
+    // ground footprint 5765.13 meters
+    // circle radius: 5.76km / 2 = 2.88km
+    circle = turf.circle(center, 2.88, {units: 'kilometers',steps: 8});
     envelopePolygon = turf.envelope(circle);
     hoffangle = (H_OFFSET < 0)?270:90;
     voffangle = (V_OFFSET < 0)?0:180;

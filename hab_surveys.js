@@ -2,16 +2,29 @@ var fs = require('fs');
 var turf = require('@turf/turf');
 var cmd = require('node-cmd');
 
-var data_path = '/home/pb/Work/SAERI/Habitat_Surveys/data/'
-var gpx = JSON.parse(fs.readFileSync(data_path + 'gpx.geojson'));
-var results = JSON.parse(fs.readFileSync(data_path + 'results.json'));
+var data_path = '/home/pb/Work/SAERI/Habitat_Surveys/2019_02_14_primo_waypoints/'
+
+var gpx = JSON.parse(fs.readFileSync(data_path + '2019_02_14_primo_waypoints.geojson'));
+var count = 0;
+var results = [
+  JSON.parse(fs.readFileSync(data_path + 'fi_hab_survey_results.json')),
+  JSON.parse(fs.readFileSync(data_path + 'fi_hab_survey1_results.json')),
+  JSON.parse(fs.readFileSync(data_path + 'fi_hab_survey_mod3_results.json'))
+]
+
 
 turf.featureEach(gpx, function(currentFeature, featureIndex) {
   name = currentFeature.properties.name;
-  for (var i = 0; i < results.length; i++) {
-    if ( results[i].waypoint != undefined && results[i].waypoint == name) {
-      Object.assign(currentFeature.properties,results[i])
+
+  for (var h = 0; h < results.length; h++) {
+
+    for (var i = 0; i < results[h].length; i++) {
+      if ( results[h][i].waypoint != undefined && results[h][i].waypoint == name) {
+        Object.assign(currentFeature.properties,results[h][i]);
+        count++;
+      }
     }
+
   }
   for (var property in currentFeature.properties) {
     if (currentFeature.properties[property] === null || currentFeature.properties[property] === undefined || currentFeature.properties[property] === '') {
@@ -20,4 +33,5 @@ turf.featureEach(gpx, function(currentFeature, featureIndex) {
   };
 });
 
-fs.writeFileSync(data_path+'hab_survey_opt.geojson',JSON.stringify(gpx));
+// fs.writeFileSync(data_path+'primo_wr.geojson',JSON.stringify(gpx));
+console.log (count + ' / ' + gpx['features'].length );
