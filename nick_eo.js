@@ -22,8 +22,11 @@ csv()
     for (var i = 0; i < jsonObj.length; i++) {
       for (var j = 0; j < keywords.length; j++) {
         if (
-          // jsonObj[i].title.includes(keywords[j]) || jsonObj[i].abstract.includes(keywords[j]) || jsonObj[i].topicCategory.includes(keywords[j]) || jsonObj[i].lineage.includes(keywords[j]) ||
-          jsonObj[i].keywords.includes(keywords[j])
+          jsonObj[i].keywords.toLowerCase().includes(keywords[j].toLowerCase())
+          // || jsonObj[i].title.toLowerCase().includes(keywords[j].toLowerCase())
+          // || jsonObj[i].abstract.toLowerCase().includes(keywords[j].toLowerCase())
+          // || jsonObj[i].topicCategory.toLowerCase().includes(keywords[j].toLowerCase())
+          // || jsonObj[i].lineage.toLowerCase().includes(keywords[j].toLowerCase())
         ) {
           matchingRows.push(jsonObj[i]);
           count++;
@@ -34,6 +37,6 @@ csv()
     console.log(count);
     converter.json2csv(matchingRows, function (err, csv) {
       if (err) throw err;
-      fs.writeFileSync(dataPath+'nick_eo.csv',csv);
+      // fs.writeFileSync(dataPath+'nick_eo.csv',csv);
     });
 });
