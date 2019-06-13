@@ -43,16 +43,16 @@ var groundValidationPoints = turf.featureCollection([]);
 for (var g = 0; g < geojson.length; g++) {
   for (var r = 0; r < results.length; r++) {
     turf.featureEach(geojson[g], function(currentFeature, featureIndex) {
+      count++; // counting gvps
       var name = currentFeature.properties.name;
       var time = new Date(currentFeature.properties.time);
       for (var i = 0; i < results[r].length; i++) {
-        count++; // counting gvps
         var gvp = results[r][i];
         var waypoint = gvp.waypoint;
         var start = new Date(gvp.start);
         if (waypoint != undefined && waypoint == name && start.setHours(0,0,0,0) == time.setHours(0,0,0,0)) {
           Object.assign(currentFeature.properties, gvp);
-          // console.log(gpxs[g]+' '+start+' '+waypoint+' '+forms[r]);
+
           // Optimize
           for (var property in currentFeature.properties) {
             if (currentFeature.properties[property] == null || currentFeature.properties[property] == undefined || currentFeature.properties[property] == '') {
@@ -74,6 +74,6 @@ for (var g = 0; g < geojson.length; g++) {
   }
 }
 // console.log(groundValidationPoints);
-console.log(groundValidationPoints.features.length+'/'+count);
+console.log(groundValidationPoints.features.length+'/'+count/forms.length);
 
 fs.writeFileSync(data_path+'Bran/GroundValidationPoints.geojson',JSON.stringify(groundValidationPoints));
