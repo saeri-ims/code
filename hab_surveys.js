@@ -76,4 +76,4 @@ for (var g = 0; g < geojson.length; g++) {
 // console.log(groundValidationPoints);
 console.log(groundValidationPoints.features.length+'/'+count/forms.length);
 
-fs.writeFileSync(data_path+'Bran/GroundValidationPoints.geojson',JSON.stringify(groundValidationPoints));
+fs.writeFileSync(data_path+'Bran/'+(new Date()).toISOString().replace(/-/g, '').split('T')[0]+'_GroundValidationPoints.geojson',JSON.stringify(groundValidationPoints));
