@@ -1,7 +1,8 @@
-var fs = require('fs');
-var turf = require('@turf/turf');
-var cmd = require('node-cmd');
-var path = require('path');
+const fs = require('fs');
+const turf = require('@turf/turf');
+const cmd = require('node-cmd');
+const path = require('path');
+
 var data_path = '/mnt/Data/Habitat_Surveys/data_hab_surveys/'
 
 function walkSync(currentDirPath, callback) {
