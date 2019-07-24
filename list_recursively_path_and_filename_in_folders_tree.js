@@ -8,7 +8,7 @@ const path = require('path');
 const converter = require('json-2-csv');
 
 var original_path = '/mnt/';
-var starting_folder = 'Work'
+var starting_folder = 'NAS'
 
 var metadata_path = '/mnt/Data/CKAN_Metadata/data/';
 

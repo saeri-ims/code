@@ -11,7 +11,7 @@ const converter = require('json-2-csv');
 
 var metadata_path = '/mnt/Data/CKAN_Metadata/data/';
 var metadata_file = 'metadata_FK_export190211.csv';
-var paths_names_file = 'Work.json'
+var paths_names_file = 'NAS.json'
 
 var list_paths_names = JSON.parse(fs.readFileSync(metadata_path + paths_names_file));
 
@@ -25,13 +25,15 @@ csv()
     for (var i = 0; i < jsonObj.length; i++) {
       var original_title = jsonObj[i]['original_title'];
       for (var j = 0; j < list_paths_names.length; j++) {
+        // var file_path = '?';
         var file_name = list_paths_names[j]['file_name'];
         if (file_name == original_title) {
           // match!
           file_path = list_paths_names[j]['file_path'];
           match++
-          // break;
-        } else {
+          break;
+        }
+        else {
           // doesn't match!
           file_path = '';
           file_name = '';
