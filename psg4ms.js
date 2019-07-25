@@ -19,11 +19,11 @@ csv()
         // An error occurred
         console.error(err);
       }
-      jsonObj[i]['Photo_Ground'] = base_url+waypoint+'/'+files[1];
-      jsonObj[i]['Photo_N'] = base_url+waypoint+'/'+files[2];
-      jsonObj[i]['Photo_E'] = base_url+waypoint+'/'+files[3];
-      jsonObj[i]['Photo_S'] = base_url+waypoint+'/'+files[4];
-      jsonObj[i]['Photo_W'] = base_url+waypoint+'/'+files[5];
+      jsonObj[i]['picture_ground'] = base_url+waypoint+'/'+files[1];
+      jsonObj[i]['picture_north'] = base_url+waypoint+'/'+files[2];
+      jsonObj[i]['picture_east'] = base_url+waypoint+'/'+files[3];
+      jsonObj[i]['picture_south'] = base_url+waypoint+'/'+files[4];
+      jsonObj[i]['picture_west'] = base_url+waypoint+'/'+files[5];
       console.log(jsonObj[i]);
     }
     fs.writeFileSync(data_path + 'forms/2019_04_Grytviken_GroundValidationFromJamesWake.json', JSON.stringify(jsonObj));
