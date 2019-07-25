@@ -26,6 +26,6 @@ csv()
       jsonObj[i]['Photo_W'] = base_url+waypoint+'/'+files[5];
       console.log(jsonObj[i]);
     }
-    fs.writeFileSync(data_path + 'forms/2019_04_ImagesFromGroundValidation.json', JSON.stringify(jsonObj));
+    fs.writeFileSync(data_path + 'forms/2019_04_Grytviken_GroundValidationFromJamesWake.json', JSON.stringify(jsonObj));
     console.log('Done!');
   });
