@@ -1,7 +1,7 @@
-var fs = require('fs');
-var turf = require('@turf/turf');
-var cmd = require('node-cmd');
-var path = require('path');
+const fs = require('fs');
+const turf = require('@turf/turf');
+const cmd = require('node-cmd');
+
 var data_path = '/mnt/Data/Habitat_Surveys/data_hab_surveys/'
 var base_url = 'https://ims.saeri.org/psm4cm/';
 var data = JSON.parse(fs.readFileSync(data_path + 'manually/dsm4cm.geojson'));
